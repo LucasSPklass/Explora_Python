@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BAPI_MATERIAL_SAVEDATA xmlns:urn="urn:sap-com:document:sap:soap:functions:mc-style"
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <HEADDATA>
+        <MATERIAL></MATERIAL>
+        <MATL_TYPE></MATL_TYPE>
+        <BASIC_VIEW>X</BASIC_VIEW>
+        <PURCHASE_VIEW>X</PURCHASE_VIEW>
+    </HEADDATA>
+    <CLIENTDATA>
+        <DEL_FLAG />
+        <ALLWD_VOL>0</ALLWD_VOL>
+        <PUR_STATUS />
+    </CLIENTDATA>
+    <CLIENTDATAX>
+        <DEL_FLAG>X</DEL_FLAG>
+        <PUR_STATUS>X</PUR_STATUS>
+    </CLIENTDATAX>
+    <MATERIALDESCRIPTION>
+    </MATERIALDESCRIPTION>
+    <MATERIALLONGTEXT>
+    </MATERIALLONGTEXT>
+    <TAXCLASSIFICATIONS />
+    <UNITSOFMEASURE />
+    <UNITSOFMEASUREX />
+    <PLANTDATA>
+        <PLANT>0581</PLANT>
+        <PUR_STATUS>99</PUR_STATUS>
+    </PLANTDATA>
+    <PLANTDATAX>
+        <PLANT>0581</PLANT>
+        <PUR_STATUS>X</PUR_STATUS>
+    </PLANTDATAX>
+    <PRTDATA />
+    <PRTDATAX />
+    <INTERNATIONALARTNOS />
+</BAPI_MATERIAL_SAVEDATA>
