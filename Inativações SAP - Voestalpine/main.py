@@ -1,64 +1,54 @@
 import os
 import pandas as pd
 import xml.etree.ElementTree as xmlET
-
 from datetime import datetime
 import logging
 import traceback
-
+import xml.dom.minidom
 from functions import log_init, pretty_xml, format_xml_body, fetch_data
 
 def main():
-    # Diretório desse arquivo .py
     PATH = os.path.dirname(os.path.abspath(__file__))
     PATH = PATH.replace('\\', '/') + '/'
 
-    # Começa o processo de logging
     log_init(PATH)
 
-    # Localização do arquivo Excel (em relação ao diretório PATH)
     excel_file: str = "itens/EXEMPLO-MOCK-Requisicoes.xlsx"
 
-    # Dataframe (tabela) com os dados das requests
     df_itens: pd.DataFrame = pd.read_excel(PATH + excel_file, engine="openpyxl", dtype=str)
 
-    # Parse do template xml
-    template = xmlET.parse(PATH + "xml/template.xml")
-    template_root = template.getroot()
 
-    # Insere os namespaces na root do xml
-    template_root.set('xmlns:urn', 'urn:sap-com:document:sap:soap:functions:mc-style')
-    template_root.set('xmlns:soapenv', 'http://schemas.xmlsoap.org/soap/envelope/')
-
-    # FOR LOOP das colunas do Dataframe
     for index, item in df_itens.iterrows():
 
-        item_material: str = str(item['MATERIAL']) # Material do item atual
+        template = xmlET.parse(PATH + "xml/template.xml")
+        template_root = template.getroot()
 
-        # Roda as funções de formatação xml e request + logging
+        template_root.set('xmlns:urn', 'urn:sap-com:document:sap:soap:functions:mc-style')
+        template_root.set('xmlns:soapenv', 'http://schemas.xmlsoap.org/soap/envelope/')
+        
+        item_material: str = str(item['MATERIAL']) 
+
         logging.info(f'Iniciando formatação XML para: {item_material}')
         xml_str = format_xml_body(index, template_root, item)
 
+        file_date_time = datetime.now().strftime("%Y-%m-%d")
 
-        # # ME DESCOMENTE 🙏 (selecione esse trecho e "Ctrl + :")
-        # # logging.info(f'Iniciando request para: {item_material}')
-        # response = fetch_data(xml_str)
-        
-        # # Formatação do nome do arquivo de resposta
-        # file_date_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        # file_name_response = f'{item_material}_{file_date_time}'
+        log_xml_dir = os.path.join(f'{PATH}xml/', 'requests')
+        os.makedirs(log_xml_dir, exist_ok=True)
 
-        # # Escreve a resposta da request em um arquivo dentro do dir "/logs/requests/", exemplo de nome: "000000000000037272_2025-03-21_12-09-52.json"
-        # with open(PATH + f'logs/requests/{file_name_response}.json', 'w', encoding='utf-8') as file:
-        #     file.write(response.json())
+        with open(log_xml_dir + f'/Request_{item_material}_{file_date_time}.xml', 'w') as f:
+            f.write(pretty_xml(xml_str.decode('utf-8')))
 
+        logging.info(f'Iniciando request para: {item_material}')
+        response = fetch_data(xml_str)
 
-        # Trecho para DEBUG
+        xml_dom = xml.dom.minidom.parseString(response.text)
+        prettied_xml = xml_dom.toprettyxml(indent="  ")
 
-        # Escreve um arquivo "output.xml" contendo o body da requisição atual em "/xml/"
-        # with open(PATH + 'xml/output.xml', 'w') as f:
-        #     f.write(pretty_xml(xml_str.decode('utf-8')))
+        file_name_response = f'/Response_{item_material}_{file_date_time}'
 
+        with open(log_xml_dir + f'{file_name_response}.xml', 'w', encoding='utf-8') as file:
+            file.write(prettied_xml)
 
 if __name__ == "__main__":
     try:

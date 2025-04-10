@@ -1,2 +1,6 @@
 desktop.ini
 *.log
+__pycache__/
+logs/
+.vscode/
+requests/
