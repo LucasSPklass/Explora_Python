@@ -1,4 +1,5 @@
 import os
+import json
 import pandas as pd
 import requests
 from requests.auth import HTTPBasicAuth
@@ -6,6 +7,22 @@ import xml.etree.ElementTree as xmlET
 from xml.dom import minidom
 from datetime import datetime
 import logging
+
+def create_config_file(config_path):
+
+    print("Criando arquivo de configuração\n\nInsira a URL e credenciais da requisição web")
+    url = input("URL: ")
+    username = input("Usuário de AUTH: ")
+    password = input("Senha de AUTH: ")
+
+    default_config = {
+    "fetch_URL": url,
+    "fetch_username": username,
+    "fetch_password": password
+    }
+
+    with open(config_path, 'w') as config_file:
+        json.dump(default_config, config_file, indent=4)
 
 def pretty_xml(xml_string):
     reparsed = minidom.parseString(xml_string)

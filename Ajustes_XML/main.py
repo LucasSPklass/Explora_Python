@@ -6,7 +6,7 @@ from datetime import datetime
 import logging
 import traceback
 import xml.dom.minidom
-from functions import log_init, pretty_xml, format_xml_body, fetch_data
+from functions import log_init, pretty_xml, format_xml_body, fetch_data, create_config_file
 
 def main():
     PATH = os.path.dirname(os.path.abspath(__file__))
@@ -18,7 +18,12 @@ def main():
 
     df_itens: pd.DataFrame = pd.read_excel(PATH + excel_file, engine="openpyxl", dtype=str)
 
-    with open(f'{PATH}config.json', 'r') as config_file:
+    config_file_path = f'{PATH}config.json'
+
+    if not os.path.exists(config_file_path):
+        create_config_file(config_file_path)
+
+    with open(config_file_path, 'r') as config_file:
         config = json.load(config_file)
     
     url = config.get('fetch_URL')
