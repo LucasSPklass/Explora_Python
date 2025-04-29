@@ -76,6 +76,15 @@ def format_xml_body(index: int, root: xmlET.Element, item: pd.Series) -> bytes:
         tag_longtext.append(item)
 
     valuation_data_item = root.find(".//VALUATIONDATA/item")
+    valuation_material_data = root.find(".//VALUATIONDATA/item/MATERIAL")
+    valuation_x_material_data = root.find(".//VALUATIONDATAX/item/MATERIAL")
+
+    if valuation_material_data is not None:
+        valuation_material_data.text = item_material
+
+    if valuation_x_material_data is not None:
+        valuation_x_material_data.text = item_material
+
     if valuation_data_item is not None:
         matl_usage_element = valuation_data_item.find("MATL_USAGE")
         val_class_element = valuation_data_item.find("VAL_CLASS")
@@ -106,11 +115,14 @@ def format_xml_body(index: int, root: xmlET.Element, item: pd.Series) -> bytes:
         f'"HEADDATA/MATL_TYPE": {item_matl_type}\n'
         f'"MATERIALDESCRIPTION": {item_description}\n'
         f'"MATERIALLONGTEXT": {item_longtext}\n'
+        f'"VAL_CLASS": {val_class_val}\n'
+        f'"MATL_USAGE": {matl_usage_val}\n'
     )
 
     logging.info(log_message)
 
     return xml_str
+
 
 def fetch_data(xml_string: bytes, url: str, username: str, password: str) -> requests.Response:
 
