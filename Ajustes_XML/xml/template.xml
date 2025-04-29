@@ -23,7 +23,7 @@
     <VALUATIONDATA>
         <item>
             <FUNCTION>UPD</FUNCTION>
-            <MATERIAL>FALTA INSERIR O CÓDIGO DO ITEM AQUI</MATERIAL>
+            <MATERIAL></MATERIAL>
             <VAL_AREA>0581</VAL_AREA>
             <PRICE_CTRL>V</PRICE_CTRL>
             <STD_PRICE>0</STD_PRICE>
@@ -37,7 +37,7 @@
     <VALUATIONDATAX>
         <item>
             <FUNCTION>UPD</FUNCTION>
-            <MATERIAL>FALTA INSERIR O CÓDIGO DO ITEM AQUI</MATERIAL>
+            <MATERIAL></MATERIAL>
             <VAL_AREA>0581</VAL_AREA>
             <PRICE_CTRL>X</PRICE_CTRL>
             <STD_PRICE>X</STD_PRICE>
