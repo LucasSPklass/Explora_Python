@@ -1,4 +1,5 @@
 import os
+import json
 import pandas as pd
 import xml.etree.ElementTree as xmlET
 from datetime import datetime
@@ -17,6 +18,12 @@ def main():
 
     df_itens: pd.DataFrame = pd.read_excel(PATH + excel_file, engine="openpyxl", dtype=str)
 
+    with open(f'{PATH}config.json', 'r') as config_file:
+        config = json.load(config_file)
+    
+    url = config.get('fetch_URL')
+    username = config.get('fetch_username')
+    password = config.get('fetch_password')
 
     for index, item in df_itens.iterrows():
 
@@ -40,7 +47,7 @@ def main():
             f.write(pretty_xml(xml_str.decode('utf-8')))
 
         logging.info(f'Iniciando request para: {item_material}')
-        response = fetch_data(xml_str)
+        response = fetch_data(xml_str, url, username, password)
 
         xml_dom = xml.dom.minidom.parseString(response.text)
         prettied_xml = xml_dom.toprettyxml(indent="  ")
