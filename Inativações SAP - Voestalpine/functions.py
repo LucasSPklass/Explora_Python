@@ -58,6 +58,29 @@ def format_xml_body(index: int, root: xmlET.Element, item: pd.Series) -> bytes:
     for item in xml_item_longtext:
         tag_longtext.append(item)
 
+    valuation_data_item = root.find(".//VALUATIONDATA/item")
+    if valuation_data_item is not None:
+        matl_usage_element = valuation_data_item.find("MATL_USAGE")
+        val_class_element = valuation_data_item.find("VAL_CLASS")
+        matl_type_actions = {
+                    "ERSA": ("2", "5595"),
+                    "HIBE": ("2", "5699"),
+                    "VERW": ("1", "5690"),
+                    "ZHMI": ("1", "7940"),
+                }
+
+        matl_usage_val, val_class_val = matl_type_actions.get(
+            item_matl_type, (None, None)
+        )
+
+        if matl_usage_val and val_class_val:
+            if matl_usage_element is not None:
+                matl_usage_element.text = matl_usage_val
+            if val_class_element is not None:
+                val_class_element.text = val_class_val
+        else:
+            logging.warning(f"Tipo de material '{item_matl_type}' não reconhecido.")
+
     xml_str = xmlET.tostring(root, encoding='utf-8', xml_declaration=True)
 
     log_message = (
