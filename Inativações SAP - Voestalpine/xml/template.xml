@@ -6,15 +6,12 @@
         <MATL_TYPE></MATL_TYPE>
         <BASIC_VIEW>X</BASIC_VIEW>
         <PURCHASE_VIEW>X</PURCHASE_VIEW>
+        <ACCOUNT_VIEW>X</ACCOUNT_VIEW>
+        <STORAGE_VIEW>X</STORAGE_VIEW>
     </HEADDATA>
     <CLIENTDATA>
-        <DEL_FLAG />
-        <ALLWD_VOL>0</ALLWD_VOL>
-        <PUR_STATUS />
     </CLIENTDATA>
     <CLIENTDATAX>
-        <DEL_FLAG>X</DEL_FLAG>
-        <PUR_STATUS>X</PUR_STATUS>
     </CLIENTDATAX>
     <MATERIALDESCRIPTION>
     </MATERIALDESCRIPTION>
@@ -23,14 +20,34 @@
     <TAXCLASSIFICATIONS />
     <UNITSOFMEASURE />
     <UNITSOFMEASUREX />
-    <PLANTDATA>
-        <PLANT>0581</PLANT>
-        <PUR_STATUS>99</PUR_STATUS>
-    </PLANTDATA>
-    <PLANTDATAX>
-        <PLANT>0581</PLANT>
-        <PUR_STATUS>X</PUR_STATUS>
-    </PLANTDATAX>
+    <VALUATIONDATA>
+        <item>
+            <FUNCTION>UPD</FUNCTION>
+            <MATERIAL>FALTA INSERIR O CÓDIGO DO ITEM AQUI</MATERIAL>
+            <VAL_AREA>0581</VAL_AREA>
+            <PRICE_CTRL>V</PRICE_CTRL>
+            <STD_PRICE>0</STD_PRICE>
+            <VAL_CLASS></VAL_CLASS>
+            <ORIG_MAT>X</ORIG_MAT>
+            <ML_SETTLE>2</ML_SETTLE>
+            <MATL_USAGE></MATL_USAGE>
+            <MAT_ORIGIN>0</MAT_ORIGIN>
+        </item>
+    </VALUATIONDATA>
+    <VALUATIONDATAX>
+        <item>
+            <FUNCTION>UPD</FUNCTION>
+            <MATERIAL>FALTA INSERIR O CÓDIGO DO ITEM AQUI</MATERIAL>
+            <VAL_AREA>0581</VAL_AREA>
+            <PRICE_CTRL>X</PRICE_CTRL>
+            <STD_PRICE>X</STD_PRICE>
+            <VAL_CLASS>X</VAL_CLASS>
+            <ORIG_MAT>X</ORIG_MAT>
+            <ML_SETTLE>X</ML_SETTLE>
+            <MATL_USAGE>X</MATL_USAGE>
+            <MAT_ORIGIN>X</MAT_ORIGIN>
+        </item>
+    </VALUATIONDATAX>
     <PRTDATA />
     <PRTDATAX />
     <INTERNATIONALARTNOS />
