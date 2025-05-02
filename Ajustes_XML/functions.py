@@ -110,7 +110,7 @@ def fetch_data(xml_string: bytes) -> requests.Response:
     
     url = ""
     username = ""
-    password = ""
+    password = "+kqF"
 
     headers = {
         'Content-Type': 'application/xml',

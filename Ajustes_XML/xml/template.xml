@@ -6,12 +6,18 @@
         <MATL_TYPE></MATL_TYPE>
         <BASIC_VIEW>X</BASIC_VIEW>
         <PURCHASE_VIEW>X</PURCHASE_VIEW>
+        <MRP_VIEW>X</MRP_VIEW>
         <ACCOUNT_VIEW>X</ACCOUNT_VIEW>
         <STORAGE_VIEW>X</STORAGE_VIEW>
     </HEADDATA>
     <CLIENTDATA>
+        <DEL_FLAG />
+        <ALLWD_VOL>0</ALLWD_VOL>
+        <PUR_STATUS />
     </CLIENTDATA>
     <CLIENTDATAX>
+        <DEL_FLAG>X</DEL_FLAG>
+        <PUR_STATUS>X</PUR_STATUS>
     </CLIENTDATAX>
     <MATERIALDESCRIPTION>
     </MATERIALDESCRIPTION>
@@ -25,6 +31,7 @@
             <FUNCTION>UPD</FUNCTION>
             <MATERIAL></MATERIAL>
             <VAL_AREA>0581</VAL_AREA>
+            <VAL_TYPE />
             <PRICE_CTRL>V</PRICE_CTRL>
             <STD_PRICE>0</STD_PRICE>
             <VAL_CLASS></VAL_CLASS>
@@ -39,6 +46,7 @@
             <FUNCTION>UPD</FUNCTION>
             <MATERIAL></MATERIAL>
             <VAL_AREA>0581</VAL_AREA>
+            <VAL_TYPE />
             <PRICE_CTRL>X</PRICE_CTRL>
             <STD_PRICE>X</STD_PRICE>
             <VAL_CLASS>X</VAL_CLASS>
