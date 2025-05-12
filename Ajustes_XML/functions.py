@@ -123,7 +123,6 @@ def format_xml_body(index: int, root: xmlET.Element, item: pd.Series) -> bytes:
 
     return xml_str
 
-
 def fetch_data(xml_string: bytes, url: str, username: str, password: str) -> requests.Response:
 
     headers = {
